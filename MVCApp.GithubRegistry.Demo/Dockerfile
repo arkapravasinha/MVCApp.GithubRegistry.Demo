@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["MVCApp.GithubRegistry.Demo.csproj", "MVCApp.GithubRegistry.Demo/"]
+COPY ["MVCApp.GithubRegistry.Demo/MVCApp.GithubRegistry.Demo.csproj", "MVCApp.GithubRegistry.Demo/"]
 RUN dotnet restore "MVCApp.GithubRegistry.Demo/MVCApp.GithubRegistry.Demo.csproj"
 COPY . .
 WORKDIR "/src/MVCApp.GithubRegistry.Demo"
@@ -18,5 +18,5 @@ RUN dotnet publish "MVCApp.GithubRegistry.Demo.csproj" -c Release -o /app/publis
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=publish /app/publish
 ENTRYPOINT ["dotnet", "MVCApp.GithubRegistry.Demo.dll"]
