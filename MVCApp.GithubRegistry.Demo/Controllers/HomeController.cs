@@ -20,7 +20,6 @@ namespace MVCApp.GithubRegistry.Demo.Controllers
 
         public IActionResult Index()
         {
-            //test
             return View();
         }
 

@@ -18,5 +18,5 @@ RUN dotnet publish "MVCApp.GithubRegistry.Demo.csproj" -c Release -o /app/publis
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "MVCApp.GithubRegistry.Demo.dll"]
